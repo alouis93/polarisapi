@@ -55,8 +55,9 @@ app.post('/api/sms', function(req, res) {
 function constructTwiml(map, directions) {
   var twimlRes = '<?xml version="1.0" encoding="UTF-8"?>';
 
+  //api_cache.push(map);
   api_cache.push(directions);
-
+  api_cache.push(JSON.stringify(directions));
   twimlRes += '<Response><Message>' +
     // '<Map>' + JSON.stringify(map) + '</Map>' +
     + JSON.stringify(directions) +
@@ -91,8 +92,8 @@ function getDirections(origin, destination, mode, callback) {
       if (!error && response.statusCode == 200){
         var map = body;
         // invoke callback with base-64 map and directions
-        api_cache.push(map);
-        api_cache.push(directions);
+        // api_cache.push(map);
+        // api_cache.push(directions);
         callback(map, directions);
       }
     });
