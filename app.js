@@ -30,6 +30,7 @@ app.get('/api/sms', function(req, res) {
 
 // Twilio SMS Handler route
 app.post('/api/sms', function(req, res) {
+  api_cache = [];
   api_cache.push(req.body)
     // Sanitize malformed incoming object
     var data = JSON.parse(
