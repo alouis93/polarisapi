@@ -83,7 +83,7 @@ function getDirections(origin, destination, mode, callback) {
       );
     });
 
-    callback(directions);
+    callback(null,directions);
 
     // Grab a static map image
     var requestUrl = "http://maps.googleapis.com/maps/api/staticmap?size=400x200&format=jpg&zoom=13&path=weight:3%7Ccolor:red%7Cenc:"+polyline;
