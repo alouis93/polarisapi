@@ -83,7 +83,7 @@ function getDirections(origin, destination, mode, callback) {
       );
     });
 
-    callback(null,directions);
+    // callback(null,directions);
 
     // Grab a static map image
     var requestUrl = "http://maps.googleapis.com/maps/api/staticmap?size=400x200&format=jpg&zoom=13&path=weight:3%7Ccolor:red%7Cenc:"+polyline;
@@ -91,7 +91,9 @@ function getDirections(origin, destination, mode, callback) {
       if (!error && response.statusCode == 200){
         var map = body;
         // invoke callback with base-64 map and directions
-        //callback(map, directions);
+        api_cache.push(map);
+        api_cache.push(directions);
+        callback(map, directions);
       }
     });
 
