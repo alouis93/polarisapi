@@ -60,8 +60,8 @@ function constructTwiml(map, directions) {
   var payload = {};
   payload.map = map;
   payload.directions = directions;
-  api_cache.push(JSON.stringify(payload));
-  twimlRes += '<Response><Message>' + JSON.stringify(directions) + '</Message></Response>';
+  // api_cache.push(JSON.stringify(payload));
+  twimlRes += '<Response><Message>' + JSON.stringify(payload) + '</Message></Response>';
   api_cache.push(JSON.stringify(twimlRes));
   return twimlRes;
 }
