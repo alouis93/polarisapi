@@ -46,7 +46,7 @@ app.post('/api/sms', function(req, res) {
   getDirections(data.origin, data.destination, data.mode, function(map, directions) {
     // Send Twiml (Twilio Markup) response
     var twiml = constructTwiml(map, directions);
-    api_cache.push(twiml);
+
     res.send(twiml);
   });
 
@@ -54,6 +54,9 @@ app.post('/api/sms', function(req, res) {
 
 function constructTwiml(map, directions) {
   var twimlRes = '<?xml version="1.0" encoding="UTF-8"?>';
+
+  api_cache.push(directions);
+
   twimlRes += '<Response><Message>' +
     // '<Map>' + JSON.stringify(map) + '</Map>' +
     + JSON.stringify(directions) +
