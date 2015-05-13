@@ -53,7 +53,7 @@ function constructTwiml(map, directions) {
   var twimlRes = '<?xml version="1.0" encoding="UTF-8"?>';
   twimlRes += '<Response><Message>' +
     // '<Map>' + JSON.stringify(map) + '</Map>' +
-    + JSON.stringify(directions) + 
+    + JSON.stringify(directions) +
     '</Message></Response>';
   return twimlRes;
 }
@@ -77,13 +77,15 @@ function getDirections(origin, destination, mode, callback) {
       );
     });
 
+    callback(directions);
+
     // Grab a static map image
     var requestUrl = "http://maps.googleapis.com/maps/api/staticmap?size=400x200&format=jpg&zoom=13&path=weight:3%7Ccolor:red%7Cenc:"+polyline;
     request(requestUrl,function(error, response, body){
       if (!error && response.statusCode == 200){
         var map = body;
         // invoke callback with base-64 map and directions
-        callback(map, directions);
+        //callback(map, directions);
       }
     });
 
