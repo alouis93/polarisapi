@@ -58,10 +58,7 @@ function constructTwiml(map, directions) {
   //api_cache.push(map);
   api_cache.push(directions);
   api_cache.push(JSON.stringify(directions));
-  twimlRes += '<Response><Message>' +
-    // '<Map>' + JSON.stringify(map) + '</Map>' +
-    + JSON.stringify(directions) +
-    '</Message></Response>';
+  twimlRes += '<Response><Message>' +  JSON.stringify(directions) + '</Message></Response>';
   return twimlRes;
 }
 
