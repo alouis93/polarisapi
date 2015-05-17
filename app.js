@@ -2,11 +2,16 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var googleMaps = require('googlemaps');
 var util = require('util');
-var twilio = require('twilio');
+// var twilio = require('twilio');
 var request = require('request');
 var http = require('http');
 var $ = require('string')
 var port = process.env.PORT || 3000;
+
+// Authorizing our twilio client - credentials from twilio.com/user/account
+var accountSid = 'AC96c47192ae354b5555452d23dbebd7c3';
+var authToken = "1fda5201e21c1e697fa243ab77e68696";
+var client = require('twilio')(accountSid, authToken);
 
 // Cache all requests in memory
 var api_cache = [];
@@ -47,6 +52,14 @@ app.post('/api/sms', function(req, res) {
     var twiml = constructTwiml(map, directions);
 
     api_cache.push( twiml );
+
+    client.messages.create({
+        body: "Jenny please?! I love you <3",
+        to: _to,
+        from: _from
+    }, function(err, message) {
+        process.stdout.write(message.sid);
+    });
 
     res.send(twiml);
   });
