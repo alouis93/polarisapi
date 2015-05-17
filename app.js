@@ -39,7 +39,7 @@ app.post('/api/sms', function(req, res) {
       .replace(')', '}')
     );
 
-  api_cache.push( JSON.stringify(req.body) );
+  api_cache.push( JSON.stringify(req.body.To) );
   // var data = req.body;
   // console.log(req.body);
 
