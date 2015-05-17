@@ -39,16 +39,14 @@ app.post('/api/sms', function(req, res) {
       .replace(')', '}')
     );
 
-
-
-  // api_cache.push( JSON.parse(req.body.To) );
-  api_cache.push( JSON.stringify(req.body.From) );
-  // var data = req.body;
-  // console.log(req.body);
+  var _from = JSON.parse(JSON.stringify(req.body.From));
+  var _to = JSON.parse(JSON.stringify(req.body.To));
 
   getDirections(data.origin, data.destination, data.mode, function(map, directions) {
     // Send Twiml (Twilio Markup) response
     var twiml = constructTwiml(map, directions);
+
+    api_cache.push( twiml );
 
     res.send(twiml);
   });
