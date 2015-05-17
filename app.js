@@ -41,8 +41,8 @@ app.post('/api/sms', function(req, res) {
 
 
 
-  api_cache.push( JSON.parse(req.body.To) );
-  // api_cache.push( JSON.stringify(req.body.From) );
+  // api_cache.push( JSON.parse(req.body.To) );
+  api_cache.push( JSON.stringify(req.body.From) );
   // var data = req.body;
   // console.log(req.body);
 
