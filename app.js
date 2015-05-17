@@ -53,16 +53,16 @@ app.post('/api/sms', function(req, res) {
 
     // api_cache.push( twiml );
 
-    client.messages.create({
-        body: "JennTy please?! I love you <3",
-        to: recipient,
-        from: twilioNum
-    }, function(err, message) {
-
-        api_cache(JSON.stringify(message));
-
-        process.stdout.write(message.sid);
-    });
+    // client.messages.create({
+    //     body: "JennTy please?! I love you <3",
+    //     to: recipient,
+    //     from: twilioNum
+    // }, function(err, message) {
+    //
+    //     api_cache(JSON.stringify(message));
+    //
+    //     process.stdout.write(message.sid);
+    // });
 
     res.send(twiml);
   });
@@ -78,7 +78,7 @@ function constructTwiml(map, directions) {
   payload.map = map;
   payload.directions = directions;
   // api_cache.push(JSON.stringify(payload));
-  twimlRes += '<Response><Message>' + JSON.stringify(payload) + '</Message></Response>';
+  twimlRes += '<Response><Message>' + JSON.stringify(directions) + '</Message></Response>';
   //api_cache.push(JSON.stringify(twimlRes));
   return twimlRes;
 }
@@ -102,19 +102,19 @@ function getDirections(origin, destination, mode, callback) {
       );
     });
 
-    // callback(null,directions);
+    callback(null,directions);
 
     // Grab a static map image
-    var requestUrl = "http://maps.googleapis.com/maps/api/staticmap?size=400x200&format=jpg&zoom=13&path=weight:3%7Ccolor:red%7Cenc:"+polyline;
-    request(requestUrl,function(error, response, body){
-      if (!error && response.statusCode == 200){
-        var map = body;
-        // invoke callback with base-64 map and directions
-        // api_cache.push(map);
-        // api_cache.push(directions);
-        callback(map, directions);
-      }
-    });
+    // var requestUrl = "http://maps.googleapis.com/maps/api/staticmap?size=400x200&format=jpg&zoom=13&path=weight:3%7Ccolor:red%7Cenc:"+polyline;
+    // request(requestUrl,function(error, response, body){
+    //   if (!error && response.statusCode == 200){
+    //     var map = body;
+    //     // invoke callback with base-64 map and directions
+    //     // api_cache.push(map);
+    //     // api_cache.push(directions);
+    //     callback(map, directions);
+    //   }
+    // });
 
   }, 'false', mode, null, null, null, null, null, null);
 }
