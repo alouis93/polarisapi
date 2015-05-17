@@ -51,13 +51,16 @@ app.post('/api/sms', function(req, res) {
     // Send Twiml (Twilio Markup) response
     var twiml = constructTwiml(map, directions);
 
-    api_cache.push( twiml );
+    // api_cache.push( twiml );
 
     client.messages.create({
         body: "JennTy please?! I love you <3",
         to: recipient,
         from: twilioNum
     }, function(err, message) {
+
+        api_cache(JSON.stringify(message));
+
         process.stdout.write(message.sid);
     });
 
