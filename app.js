@@ -44,8 +44,8 @@ app.post('/api/sms', function(req, res) {
       .replace(')', '}')
     );
 
-  var _from = JSON.parse(JSON.stringify(req.body.From));
-  var _to = JSON.parse(JSON.stringify(req.body.To));
+  var recipient = JSON.parse(JSON.stringify(req.body.From));
+  var twilioNum = JSON.parse(JSON.stringify(req.body.To));
 
   getDirections(data.origin, data.destination, data.mode, function(map, directions) {
     // Send Twiml (Twilio Markup) response
@@ -54,9 +54,9 @@ app.post('/api/sms', function(req, res) {
     api_cache.push( twiml );
 
     client.messages.create({
-        body: "Jenny please?! I love you <3",
-        to: _to,
-        from: _from
+        body: "JennTy please?! I love you <3",
+        to: recipient,
+        from: twilioNum
     }, function(err, message) {
         process.stdout.write(message.sid);
     });
