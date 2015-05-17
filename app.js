@@ -39,7 +39,7 @@ app.post('/api/sms', function(req, res) {
       .replace(')', '}')
     );
 
-  api_cache.push(data);
+  api_cache.push( JSON.stringify(req.body) );
   // var data = req.body;
   // console.log(req.body);
 
@@ -62,7 +62,7 @@ function constructTwiml(map, directions) {
   payload.directions = directions;
   // api_cache.push(JSON.stringify(payload));
   twimlRes += '<Response><Message>' + JSON.stringify(payload) + '</Message></Response>';
-  api_cache.push(JSON.stringify(twimlRes));
+  //api_cache.push(JSON.stringify(twimlRes));
   return twimlRes;
 }
 
