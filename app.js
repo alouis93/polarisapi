@@ -54,7 +54,7 @@ app.post('/api/sms', function(req, res) {
     // api_cache.push( twiml );
 
     // client.messages.create({
-    //     body: "JennTy please?! I love you <3",
+    //     body: "This is a test Twilio SMS",
     //     to: recipient,
     //     from: twilioNum
     // }, function(err, message) {
@@ -90,6 +90,8 @@ function getDirections(origin, destination, mode, callback) {
 
     // Grab encoded polyline data
     var polyline = result['routes'][0].overview_polyline.points;
+
+    api_cache.push( result['routes'][0] );
 
     // Grab navigation data
     var directions = [];
